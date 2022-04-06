@@ -66,6 +66,24 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     @Test
+    public void orderTotal_must_return_total_price_of_all_items() {
+
+        restaurant = createTestingRestaurant();
+        restaurant.addToMenu("Honey Chilly potato",100);
+        restaurant.addToMenu("Sandwich", 150);
+        List <Item> orderList = new ArrayList<>();
+        orderList.add(restaurant.orderItem("Sandwich"));
+        orderList.add(restaurant.orderItem("Sweet corn soup"));
+        orderList.add(restaurant.orderItem("Honey Chilly potato"));
+
+        int totalOrder = 0;
+        for(Item item : orderList){
+            totalOrder += item.getPrice();
+        }
+        assertEquals(totalOrder, restaurant.orderTotal(orderList));
+    }
+
+    @Test
     public void orderTotal_must_not_return_only_lastItem_price() {
 
         restaurant = createTestingRestaurant();

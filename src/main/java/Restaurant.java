@@ -62,7 +62,20 @@ public class Restaurant {
                 +"Menu:"+"\n"+getMenu());
 
     }
-    
+    public int orderTotal(List<Item> itemList){
+        int orderSum = 0;
+        for (Item item : itemList){
+            orderSum = orderSum+item.getPrice();
+        }
+        return orderSum;
+
+    }
+
+    public Item orderItem(String itemName){
+        return  findItemByName(itemName);
+
+    }
+
     public String getName() {
         return name;
     }
